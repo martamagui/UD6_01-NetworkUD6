@@ -30,11 +30,11 @@ class TaskListAdapter : ListAdapter<TaskList, ViewHolder>(TaskListItemCallBack()
 
 class TaskListItemCallBack : DiffUtil.ItemCallback<TaskList>() {
     override fun areItemsTheSame(oldItem: TaskList, newItem: TaskList): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.listId == oldItem.listId
     }
 
     override fun areContentsTheSame(oldItem: TaskList, newItem: TaskList): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.listId == oldItem.listId
     }
 
 }
