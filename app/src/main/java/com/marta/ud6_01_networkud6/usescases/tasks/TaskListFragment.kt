@@ -39,6 +39,12 @@ class TaskListFragment : Fragment() {
         binding.rvTaskList.adapter = adapter
         binding.rvTaskList.layoutManager = LinearLayoutManager(context)
 
+        binding.fabAddList.setOnClickListener {
+            val text = binding.tfNewList.text.toString()
+            addList(text)
+
+        }
+
     }
 
     override fun onDestroyView() {
@@ -56,6 +62,7 @@ class TaskListFragment : Fragment() {
                 if(response.isSuccessful){
                     response.body()?.let { lista.addAll(it) }
                     adapter.submitList(lista)
+                    adapter.notifyDataSetChanged()
                 }else{
                     Toast.makeText(context, "RESPONSE(╯°□°）╯︵ ┻━┻ Connection faliure", Toast.LENGTH_SHORT).show()
                 }
@@ -66,5 +73,28 @@ class TaskListFragment : Fragment() {
             }
 
         })
+    }
+    //Add
+    private fun addList(title: String){
+        val newList: TaskList  = TaskList((lista.size+1), title, 1)
+        val service = TaskApi.service.addList(newList)
+        val call = service.enqueue(object : Callback<Any>{
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if(response.isSuccessful){
+                    lista.add(newList)
+                    adapter.submitList(lista)
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Format faliure", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Connection faliure ", Toast.LENGTH_SHORT).show()
+                Log.e("faliure","$t")
+            }
+        })
+
+
     }
 }
