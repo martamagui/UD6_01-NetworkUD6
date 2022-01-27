@@ -25,6 +25,8 @@ class TaskListFragment : Fragment() {
     private val adapter = TaskListAdapter()
     private val lista: MutableList<TaskList> = mutableListOf()
 
+    //TODO crear una función que compruebe los ids de las listas antes de guardarlas
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
