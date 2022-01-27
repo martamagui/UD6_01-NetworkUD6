@@ -1,11 +1,10 @@
-package com.marta.ud6_01_networkud6.usescases.Tasks
+package com.marta.ud6_01_networkud6.usescases.tasks
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.marta.ud6_01_networkud6.R
 import com.marta.ud6_01_networkud6.databinding.FragmentTasksBinding
 
 class TasksFragment : Fragment() {

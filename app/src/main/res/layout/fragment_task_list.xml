@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usescases.Tasks.TaskListFragment">
+    tools:context=".usescases.tasks.TaskListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_task_list"
