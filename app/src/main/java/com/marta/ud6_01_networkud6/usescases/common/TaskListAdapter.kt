@@ -34,11 +34,11 @@ class TaskListAdapter(private val onListTitleClicked: (TaskList) -> Unit) :
 
 class TaskListItemCallBack : DiffUtil.ItemCallback<TaskList>() {
     override fun areItemsTheSame(oldItem: TaskList, newItem: TaskList): Boolean {
-        return oldItem.listId == oldItem.listId
+        return oldItem.listId == newItem.listId
     }
 
     override fun areContentsTheSame(oldItem: TaskList, newItem: TaskList): Boolean {
-        return oldItem.listId == oldItem.listId
+        return oldItem.listId == newItem.listId
     }
 
 }

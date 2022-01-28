@@ -11,6 +11,7 @@ class TasksFragment : Fragment() {
     private var _binding: FragmentTasksBinding? = null
     private val binding
         get() = _binding!!
+    private val adapter: TasksAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,6 +19,11 @@ class TasksFragment : Fragment() {
     ): View? {
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
 
