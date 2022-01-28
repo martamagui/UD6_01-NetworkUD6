@@ -18,5 +18,9 @@
         android:id="@+id/tasksFragment"
         android:name="com.marta.ud6_01_networkud6.usescases.tasks.TasksFragment"
         android:label="fragment_tasks"
-        tools:layout="@layout/fragment_tasks" />
+        tools:layout="@layout/fragment_tasks" >
+        <argument
+            android:name="listIdFk"
+            app:argType="integer" />
+    </fragment>
 </navigation>

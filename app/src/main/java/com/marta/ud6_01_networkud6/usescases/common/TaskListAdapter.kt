@@ -10,7 +10,8 @@ import com.marta.ud6_01_networkud6.model.TaskList
 import com.marta.ud6_01_networkud6.usescases.common.TaskListAdapter.ViewHolder
 
 
-class TaskListAdapter : ListAdapter<TaskList, ViewHolder>(TaskListItemCallBack()) {
+class TaskListAdapter(private val onListTitleClicked: (TaskList) -> Unit) :
+    ListAdapter<TaskList, ViewHolder>(TaskListItemCallBack()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,6 +23,9 @@ class TaskListAdapter : ListAdapter<TaskList, ViewHolder>(TaskListItemCallBack()
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val taskList = getItem(position)
         holder.binding.tvListTitle.text = taskList.name
+        holder.binding.root.setOnClickListener{
+            onListTitleClicked(taskList)
+        }
     }
 
     inner class ViewHolder(val binding: ItemTasklistBinding) :

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marta.ud6_01_networkud6.databinding.FragmentTaskListBinding
 import com.marta.ud6_01_networkud6.model.TaskList
@@ -22,8 +23,11 @@ class TaskListFragment : Fragment() {
     private var _binding: FragmentTaskListBinding? = null
     private val binding
         get() = _binding!!
-    private val adapter = TaskListAdapter()
     private val lista: MutableList<TaskList> = mutableListOf()
+    private val adapter = TaskListAdapter{
+        viewChange(it.listId)
+    }
+
 
     //TODO crear una función que compruebe los ids de las listas antes de guardarlas
 
@@ -44,7 +48,6 @@ class TaskListFragment : Fragment() {
         binding.fabAddList.setOnClickListener {
             val text = binding.tfNewList.text.toString()
             addList(text)
-
         }
 
     }
@@ -96,7 +99,9 @@ class TaskListFragment : Fragment() {
                 Log.e("faliure","$t")
             }
         })
-
-
+    }
+    private fun viewChange(userId: Int){
+        val action = TaskListFragmentDirections.actionTaskListFragmentToTasksFragment(userId)
+        findNavController().navigate(action)
     }
 }
