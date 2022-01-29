@@ -27,8 +27,6 @@ class TaskListFragment : Fragment() {
     private val adapter = TaskListAdapter{
         viewChange(it.listId)
     }
-
-
     //TODO crear una función que compruebe los ids de las listas antes de guardarlas
 
     override fun onCreateView(

@@ -40,7 +40,6 @@ class TasksFragment : Fragment() {
         binding.rvTasks.layoutManager = LinearLayoutManager(context)
         val listId: Int = args.listIdFk
         requestTask(listId)
-
     }
 
     override fun onDestroyView() {
