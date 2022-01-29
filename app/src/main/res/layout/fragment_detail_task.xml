@@ -8,32 +8,32 @@
     tools:context=".usescases.tasks.AddTaskFragment" >
 
     <TextView
-        android:id="@+id/tv_new_task"
+        android:id="@+id/tv_detail_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/new_task"
+        android:text="@string/detail_task"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_task_title"
+        android:id="@+id/tv_detail_task_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
         android:text="@string/Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_task" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_task" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/filledTextField"
+        android:id="@+id/filledTextField_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -42,26 +42,27 @@
         android:hint="@string/Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_task_title">
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_task_title">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_detail_task_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/tv_description"
+        android:id="@+id/tv_detail_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/Description"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="@+id/filledTextField"
-        app:layout_constraintTop_toBottomOf="@+id/filledTextField" />
+        app:layout_constraintStart_toStartOf="@+id/filledTextField_detail"
+        app:layout_constraintTop_toBottomOf="@+id/filledTextField_detail" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/filledTextField2"
+        android:id="@+id/filledTextField2_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -70,9 +71,10 @@
         android:hint="@string/Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_description">
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_description">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tv_detail_task_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -85,8 +87,27 @@
         android:layout_marginTop="24dp"
         android:text="@string/save"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="@+id/filledTextField2"
-        app:layout_constraintStart_toStartOf="@+id/filledTextField2"
-        app:layout_constraintTop_toBottomOf="@+id/filledTextField2" />
+        app:layout_constraintEnd_toEndOf="@+id/filledTextField2_detail"
+        app:layout_constraintStart_toStartOf="@+id/filledTextField2_detail"
+        app:layout_constraintTop_toBottomOf="@+id/filledTextField2_detail" />
+
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:icon="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toTopOf="@+id/tv_detail_task_title"
+        app:layout_constraintEnd_toEndOf="@+id/tv_detail_task_title" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:icon="@drawable/ic_baseline_delete_24"
+        app:layout_constraintBottom_toTopOf="@+id/tv_detail_task_title"
+        app:layout_constraintEnd_toStartOf="@+id/btn_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

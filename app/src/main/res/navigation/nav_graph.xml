@@ -22,5 +22,13 @@
         <argument
             android:name="listIdFk"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_tasksFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.marta.ud6_01_networkud6.usescases.tasks.AddTaskFragment"
+        android:label="fragment_add_task"
+        tools:layout="@layout/fragment_add_task" />
 </navigation>

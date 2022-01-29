@@ -8,4 +8,5 @@
     <string name="TaskList">TaskList</string>
     <string name="Description">Description</string>
     <string name="save">Guardar</string>
+    <string name="detail_task">Detalles Tarea</string>
 </resources>
