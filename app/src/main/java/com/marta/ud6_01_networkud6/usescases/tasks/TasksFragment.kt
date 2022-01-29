@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marta.ud6_01_networkud6.databinding.FragmentTasksBinding
@@ -25,6 +26,7 @@ class TasksFragment : Fragment() {
     private val adapter = TaskAdapter()
     private val args: TasksFragmentArgs by navArgs()
     private var taskList: MutableList<Task> = mutableListOf()
+    private var listId: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,13 +40,20 @@ class TasksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvTasks.adapter = adapter
         binding.rvTasks.layoutManager = LinearLayoutManager(context)
-        val listId: Int = args.listIdFk
+        listId= args.listIdFk
         requestTask(listId)
+        binding.fabAddTask.setOnClickListener {
+            viewChangeAddTaskView()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private fun viewChangeAddTaskView(){
+        val action =  TasksFragmentDirections.actionTasksFragmentToAddTaskFragment(listId)
+        findNavController().navigate(action)
     }
 
     //Request

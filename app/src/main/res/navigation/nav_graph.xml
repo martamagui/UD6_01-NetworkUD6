@@ -30,5 +30,8 @@
         android:id="@+id/addTaskFragment"
         android:name="com.marta.ud6_01_networkud6.usescases.tasks.AddTaskFragment"
         android:label="fragment_add_task"
-        tools:layout="@layout/fragment_add_task" />
+        tools:layout="@layout/fragment_add_task" >
+        <argument android:name="listId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
