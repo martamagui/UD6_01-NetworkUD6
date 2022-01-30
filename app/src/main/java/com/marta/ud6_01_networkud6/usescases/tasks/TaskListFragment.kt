@@ -46,7 +46,6 @@ class TaskListFragment : Fragment() {
             val text = binding.tfNewList.text.toString()
             addList(text)
         }
-
     }
 
     override fun onDestroyView() {

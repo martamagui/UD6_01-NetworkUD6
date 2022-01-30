@@ -29,6 +29,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tf_new_list"
+            style="@style/custom_body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -56,6 +57,7 @@
         android:layout_marginTop="150dp"
         android:text="@string/no_lists"
         android:textAlignment="center"
+        android:textAppearance="@style/custom_body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rv_task_list" />

@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="TextView" />
+            android:text="@string/Title"
+            android:textAppearance="@style/custom_body1" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

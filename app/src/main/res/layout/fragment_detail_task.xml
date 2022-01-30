@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/detail_task"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textAppearance="@style/custom_big_titles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         android:text="@string/Title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/custom_titles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:text="@string/Title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/custom_body1"
         app:layout_constraintBottom_toBottomOf="@+id/et_detail_task_title_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/et_detail_task_title_container" />
@@ -62,7 +62,8 @@
             android:id="@+id/et_detail_task_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textAutoCorrect" />
+            android:inputType="textAutoCorrect"
+            android:textAppearance="@style/custom_body1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/Description"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/custom_titles"
         app:layout_constraintStart_toStartOf="@+id/et_detail_task_title_container"
         app:layout_constraintTop_toBottomOf="@+id/et_detail_task_title_container" />
 
@@ -83,7 +84,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/Description"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/custom_body1"
         app:layout_constraintEnd_toEndOf="@+id/et_detail_task_description_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/et_detail_task_description_container" />
@@ -107,7 +108,8 @@
             android:id="@+id/et_detail_task_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textAutoCorrect" />
+            android:inputType="textAutoCorrect"
+            android:textAppearance="@style/custom_body1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -117,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/save"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/custom_button"
         app:layout_constraintEnd_toEndOf="@+id/et_detail_task_description_container"
         app:layout_constraintStart_toStartOf="@+id/et_detail_task_description_container"
         app:layout_constraintTop_toBottomOf="@+id/et_detail_task_description_container"
@@ -151,7 +153,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/status"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@style/custom_body1"
         app:layout_constraintEnd_toEndOf="@+id/tv_detail_task_dont_edit"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/tv_detail_task_dont_edit"

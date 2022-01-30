@@ -54,6 +54,12 @@ class AddTaskFragment : Fragment() {
         }
         return false;
     }
+    private fun clearTxtFiles(){
+        with(binding){
+            etTitleTask.setText("")
+            etDescriptionTask.setText("")
+        }
+    }
 
     //Api
     fun addTask(task: Task) {
@@ -64,6 +70,7 @@ class AddTaskFragment : Fragment() {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Guardado", Toast.LENGTH_SHORT)
                         .show()
+                    clearTxtFiles()
                 } else {
                     Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Format faliure", Toast.LENGTH_SHORT)
                         .show()

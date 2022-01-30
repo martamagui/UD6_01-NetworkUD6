@@ -11,9 +11,8 @@
         android:id="@+id/tv_new_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/new_task"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/custom_big_titles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +25,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="@string/Title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/custom_titles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +45,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_title_task"
+            style="@style/custom_body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/Description"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/custom_titles"
         app:layout_constraintStart_toStartOf="@+id/filledTextField"
         app:layout_constraintTop_toBottomOf="@+id/filledTextField" />
 
@@ -75,6 +75,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_description_task"
+            style="@style/custom_body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -85,8 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:background="@drawable/gradient"
         android:text="@string/save"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/custom_button"
         app:layout_constraintEnd_toEndOf="@+id/filledTextField2"
         app:layout_constraintStart_toStartOf="@+id/filledTextField2"
         app:layout_constraintTop_toBottomOf="@+id/filledTextField2" />

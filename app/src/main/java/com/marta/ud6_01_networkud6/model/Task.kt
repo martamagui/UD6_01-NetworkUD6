@@ -3,7 +3,7 @@ package com.marta.ud6_01_networkud6.model
 import com.google.gson.annotations.SerializedName
 
 data class Task(
-    @SerializedName("tasKId")
+    @SerializedName("taskId")
     val taskId: Int,
     @SerializedName("listIdFk")
     val listIdFk: Int,
