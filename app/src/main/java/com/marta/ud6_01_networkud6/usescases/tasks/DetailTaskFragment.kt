@@ -79,6 +79,9 @@ class DetailTaskFragment : Fragment() {
             etDetailTaskTitleContainer.visibility = View.INVISIBLE
             etDetailTaskDescriptionContainer.visibility = View.INVISIBLE
             btnSave.visibility = View.INVISIBLE
+            tvDetailTaskTitle.visibility = View.VISIBLE
+            tvDetailDescription.visibility = View.VISIBLE
+            tvStatus.visibility = View.VISIBLE
         }
     }
 
@@ -155,7 +158,7 @@ class DetailTaskFragment : Fragment() {
             override fun onResponse(call: Call<Task>, response: Response<Task>) {
                 if(response.isSuccessful){
                     task = response.body()!!
-                    setTexts(task)
+                    setTexts(response.body()!!)
                     changeToViewDetailMode()
                 }else{
                     Toast.makeText(context, R.string.format_error, Toast.LENGTH_SHORT)

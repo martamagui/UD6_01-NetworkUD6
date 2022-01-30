@@ -25,7 +25,7 @@ class TaskListFragment : Fragment() {
         get() = _binding!!
     private val lista: MutableList<TaskList> = mutableListOf()
     private val adapter = TaskListAdapter{
-        viewChange(it.listId)
+        viewChange(it.listId, it.name)
     }
     //TODO crear una función que compruebe los ids de las listas antes de guardarlas
 
@@ -101,8 +101,8 @@ class TaskListFragment : Fragment() {
             }
         })
     }
-    private fun viewChange(userId: Int){
-        val action = TaskListFragmentDirections.actionTaskListFragmentToTasksFragment(userId)
+    private fun viewChange(listId: Int, listName:String){
+        val action = TaskListFragmentDirections.actionTaskListFragmentToTasksFragment(listId,listName)
         findNavController().navigate(action)
     }
 }

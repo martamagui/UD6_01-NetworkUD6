@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,16 +42,30 @@ class TasksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvTasks.adapter = adapter
         binding.rvTasks.layoutManager = LinearLayoutManager(context)
+        binding.tvListTitle.text = args.listName
         listId = args.listIdFk
         requestTask(listId)
         binding.fabAddTask.setOnClickListener {
             viewChangeAddTaskView()
+        }
+        binding.ivBin.setOnClickListener {
+            deleteList(listId)
+            requestTask(listId)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    //Elements visibility
+    private fun showHideMessage(){
+        Log.d("list size",taskList.size.toString())
+        if(taskList.size>0){
+            binding.tvNoTask.visibility = View.INVISIBLE
+        }else{
+            binding.tvNoTask.visibility = View.VISIBLE
+        }
     }
 
     //ViewChange
@@ -76,6 +91,7 @@ class TasksFragment : Fragment() {
                     response.body()?.let { taskList.addAll(it) }
                     adapter.submitList(taskList)
                     adapter.notifyDataSetChanged()
+                    showHideMessage()
                 } else {
                     Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Format faliure", Toast.LENGTH_SHORT)
                         .show()
@@ -89,6 +105,25 @@ class TasksFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
                 Log.e("faliure", "$t")
+            }
+        })
+    }
+
+    private fun deleteList(listId: Int){
+        val service = TaskApi.service.deleteList(listId)
+        val call = service.enqueue(object : Callback<Int> {
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if(!response.isSuccessful){
+                    Log.d("Item","(╯°□°）╯︵ ┻━┻ Formato incorrecto")
+                }else{
+                    binding.rvTasks.visibility = View.GONE
+                    binding.ivBin.visibility = View.GONE
+                    binding.tvListTitle.text = "Lista eliminada"
+                    binding.tvNoTask.text = "Esta lista fue eliminada"
+                }
+            }
+            override fun onFailure(call: Call<Int>, t: Throwable) {
+                Log.d("Item","(╯°□°）╯︵ ┻━┻ Formato incorrecto $t")
             }
         })
     }

@@ -14,7 +14,7 @@ interface TaskApiService {
     fun addList(@Body taskList: TaskList): Call<Any>
 
     @DELETE("api/list/{listId}")
-    fun deleteList(@Path("listId") listId: Int): Call<Any>
+    fun deleteList(@Path("listId") listId: Int): Call<Int>
 
     //Tasks
     @GET("api/tasks")
