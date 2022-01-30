@@ -12,7 +12,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding
         get()=_binding!!
-    // TODO: Para futuras entregas
+    // TODO: Para la siguiente entrega
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
