@@ -100,7 +100,7 @@ class DetailTaskFragment : Fragment() {
         with(binding) {
             tvDetailTaskTitle.text = getString(R.string.deleted)
             tvDetailDescription.text = getString(R.string.deleted)
-            tvStatus.text = R.string.deleted.toString()
+            tvStatus.text = getString(R.string.deleted)
             btnEdit.isEnabled = false
             btnSave.isEnabled = false
             btnDelete.isEnabled = false
