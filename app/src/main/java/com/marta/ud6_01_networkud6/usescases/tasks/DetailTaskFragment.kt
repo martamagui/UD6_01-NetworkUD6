@@ -24,6 +24,7 @@ class DetailTaskFragment : Fragment() {
         get() = _binding!!
     private val args: DetailTaskFragmentArgs by navArgs()
     private lateinit var task: Task
+    private var editMode = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,43 +35,72 @@ class DetailTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requestTaskById(args.taskId)
+        val taskId= args.taskId
+        requestTaskById(taskId)
         changeToViewDetailMode()
+        binding.btnEdit.setOnClickListener {
+            if (editMode == true) {
+                changeToViewDetailMode()
+            } else {
+                changeToEditMode()
+            }
+        }
+        binding.btnDelete.setOnClickListener {
+            deleteTaskById(taskId)
+        }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
     //Change to edit mode
-    private fun changeToEditMode(){
-        with(binding){
-            etDetailTaskTitleContainer.visibility= View.VISIBLE
+    private fun changeToEditMode() {
+        with(binding) {
+            etDetailTaskTitleContainer.visibility = View.VISIBLE
             etDetailTaskDescriptionContainer.visibility = View.VISIBLE
             btnSave.visibility = View.VISIBLE
-            tvDetailTaskTitle.visibility= View.INVISIBLE
-            tvDetailDescription.visibility= View.INVISIBLE
-            tvStatus.visibility= View.INVISIBLE
+            tvDetailTaskTitle.visibility = View.INVISIBLE
+            tvDetailDescription.visibility = View.INVISIBLE
+            tvStatus.visibility = View.INVISIBLE
         }
     }
-    private fun changeToViewDetailMode(){
-        with(binding){
-            etDetailTaskTitleContainer.visibility= View.INVISIBLE
+
+    private fun changeToViewDetailMode() {
+        with(binding) {
+            etDetailTaskTitleContainer.visibility = View.INVISIBLE
             etDetailTaskDescriptionContainer.visibility = View.INVISIBLE
             btnSave.visibility = View.INVISIBLE
         }
     }
-    private fun setTexts(task:Task){
-        with(binding){
+
+    private fun setTexts(task: Task) {
+        with(binding) {
             tvDetailTaskTitle.text = task.title
             tvDetailDescription.text = task.description
             tvStatus.text = task.state
-
+            etDetailTaskDescription.setText(task.description)
+            etDetailTaskTitle.setText(task.title)
         }
     }
+
+    private fun viewTotaskWasDeleted() {
+        changeToViewDetailMode()
+        with(binding) {
+            tvDetailTaskTitle.text = getString(R.string.deleted)
+            tvDetailDescription.text = getString(R.string.deleted)
+            tvStatus.text = R.string.deleted.toString()
+            btnEdit.isEnabled = false
+            btnSave.isEnabled = false
+            btnDelete.isEnabled = false
+        }
+    }
+
     //Request
     private fun requestTaskById(taskId: Int) {
         val service = TaskApi.service.getTaskById(taskId)
-        val call = service.enqueue(object : Callback<Task>{
+        val call = service.enqueue(object : Callback<Task> {
             override fun onResponse(call: Call<Task>, response: Response<Task>) {
                 if (response.isSuccessful) {
                     task = response.body()!!
@@ -80,6 +110,7 @@ class DetailTaskFragment : Fragment() {
                         .show()
                 }
             }
+
             override fun onFailure(call: Call<Task>, t: Throwable) {
                 Toast.makeText(
                     context,
@@ -88,6 +119,25 @@ class DetailTaskFragment : Fragment() {
                 ).show()
                 Log.e("faliure", "$t")
             }
+        })
+    }
+
+    private fun deleteTaskById(taskId: Int) {
+        val service = TaskApi.service.deleteTask(taskId)
+        val call = service.enqueue(object : Callback<Any> {
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                if (response.isSuccessful) {
+                    viewTotaskWasDeleted()
+                } else {
+                    Toast.makeText(context, R.string.deleted_error, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                Toast.makeText(context, R.string.deleted_error_connection, Toast.LENGTH_SHORT)
+                    .show()
+            }
+
         })
     }
 }
