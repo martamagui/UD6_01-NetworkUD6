@@ -35,6 +35,7 @@ class DetailTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requestTaskById(args.taskId)
+        changeToViewDetailMode()
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -42,11 +43,24 @@ class DetailTaskFragment : Fragment() {
     }
     //Change to edit mode
     private fun changeToEditMode(){
+        with(binding){
+            etDetailTaskTitleContainer.visibility= View.VISIBLE
+            etDetailTaskDescriptionContainer.visibility = View.VISIBLE
+            btnSave.visibility = View.VISIBLE
+            tvDetailTaskTitle.visibility= View.INVISIBLE
+            tvDetailDescription.visibility= View.INVISIBLE
+            tvStatus.visibility= View.INVISIBLE
+        }
     }
-    private fun setTexts(task:Task){
+    private fun changeToViewDetailMode(){
         with(binding){
             etDetailTaskTitleContainer.visibility= View.INVISIBLE
             etDetailTaskDescriptionContainer.visibility = View.INVISIBLE
+            btnSave.visibility = View.INVISIBLE
+        }
+    }
+    private fun setTexts(task:Task){
+        with(binding){
             tvDetailTaskTitle.text = task.title
             tvDetailDescription.text = task.description
             tvStatus.text = task.state
