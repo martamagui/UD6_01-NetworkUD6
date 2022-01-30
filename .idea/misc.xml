@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/marta/Documents/GitHub/02-Android/UD6_01-NetworkUD6/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/marta/Documents/GitHub/02-Android/UD6_01-NetworkUD6/app/src/main/res/drawable/ic_baseline_delete_50.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/marta/Documents/GitHub/02-Android/UD6_01-NetworkUD6/app/src/main/res/layout/activity_main.xml" value="0.25271739130434784" />
         <entry key="..\:/Users/marta/Documents/GitHub/02-Android/UD6_01-NetworkUD6/app/src/main/res/layout/fragment_add_task.xml" value="0.25" />
         <entry key="..\:/Users/marta/Documents/GitHub/02-Android/UD6_01-NetworkUD6/app/src/main/res/layout/fragment_detail_task.xml" value="0.33" />

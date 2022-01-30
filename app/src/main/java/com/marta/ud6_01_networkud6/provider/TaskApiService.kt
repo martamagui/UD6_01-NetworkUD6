@@ -26,8 +26,11 @@ interface TaskApiService {
     @GET("api/tasks/bylistId/{listId}")
     fun getTaskByListId(@Path("listId") listId: Int): Call<List<Task>>
 
+    @GET("api/tasks/getmyTaskId")
+    fun getMyId():Call<Int>
+
     @POST("api/tasks")
-    fun addTask(@Body task: Task): Call<Any>
+    fun addTask(@Body task: Task): Call<Boolean>
 
     @PUT("api/tasks/{taskId}")
     fun editTask(

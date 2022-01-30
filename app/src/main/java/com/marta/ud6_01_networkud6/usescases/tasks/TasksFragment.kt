@@ -46,7 +46,7 @@ class TasksFragment : Fragment() {
         listId = args.listIdFk
         requestTask(listId)
         binding.fabAddTask.setOnClickListener {
-            viewChangeAddTaskView()
+            viewChangeAddTaskView(args.listIdFk)
         }
         binding.ivBin.setOnClickListener {
             deleteList(listId)
@@ -74,7 +74,7 @@ class TasksFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun viewChangeAddTaskView() {
+    private fun viewChangeAddTaskView(listId: Int) {
         val action = TasksFragmentDirections.actionTasksFragmentToAddTaskFragment(listId)
         findNavController().navigate(action)
     }

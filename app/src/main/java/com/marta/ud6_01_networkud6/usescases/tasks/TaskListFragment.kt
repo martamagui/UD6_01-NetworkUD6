@@ -42,7 +42,6 @@ class TaskListFragment : Fragment() {
         requestTaskList()
         binding.rvTaskList.adapter = adapter
         binding.rvTaskList.layoutManager = LinearLayoutManager(context)
-
         binding.fabAddList.setOnClickListener {
             val text = binding.tfNewList.text.toString()
             addList(text)
@@ -53,6 +52,14 @@ class TaskListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    // Elements visibility
+    private fun showHideMessage(){
+        if(lista.size>0){
+            binding.tvNoList.visibility = View.INVISIBLE
+        }else{
+            binding.tvNoList.visibility = View.VISIBLE
+        }
     }
     //Req data
     private fun requestTaskList(){
@@ -69,6 +76,7 @@ class TaskListFragment : Fragment() {
                     response.body()?.let { lista.addAll(it) }
                     adapter.submitList(lista)
                     adapter.notifyDataSetChanged()
+                    showHideMessage()
                 }else{
                     Toast.makeText(context, "RESPONSE(╯°□°）╯︵ ┻━┻ Connection faliure", Toast.LENGTH_SHORT).show()
                 }
@@ -79,6 +87,7 @@ class TaskListFragment : Fragment() {
             }
 
         })
+
     }
     //Add
     private fun addList(title: String){
@@ -90,6 +99,7 @@ class TaskListFragment : Fragment() {
                     lista.add(newList)
                     adapter.submitList(lista)
                     adapter.notifyDataSetChanged()
+                    showHideMessage()
                     Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Format faliure", Toast.LENGTH_SHORT).show()

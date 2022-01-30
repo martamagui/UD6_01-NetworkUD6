@@ -14,5 +14,5 @@
     <string name="connection_error">Error de conexion</string>
     <string name="format_error">Error de formato en la petición</string>
     <string name="no_task">Todavía no has añadido ninguna tarea</string>
-
+    <string name="no_lists">Comienza a añadir tu primera lista</string>
 </resources>
