@@ -70,6 +70,9 @@ class TasksFragment : Fragment() {
         val call = service.enqueue(object : Callback<List<Task>> {
             override fun onResponse(call: Call<List<Task>>, response: Response<List<Task>>) {
                 if (response.isSuccessful) {
+                    if(taskList.size>0){
+                        taskList.clear()
+                    }
                     response.body()?.let { taskList.addAll(it) }
                     adapter.submitList(taskList)
                     adapter.notifyDataSetChanged()

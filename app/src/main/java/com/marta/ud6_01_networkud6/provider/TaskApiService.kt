@@ -20,15 +20,22 @@ interface TaskApiService {
     @GET("api/tasks")
     fun getTasks(): Call<List<Task>>
 
-    @GET("api/tasks/id/{taskId}")
-    fun getTaskById(@Path("taskId")taskId: Int): Call<Task>
+    @GET("api/tasks/{taskId}")
+    fun getTaskById(@Path("taskId") taskId: Int): Call<Task>
 
-    @GET("api/tasks/{listId}")
+    @GET("api/tasks/bylistId/{listId}")
     fun getTaskByListId(@Path("listId") listId: Int): Call<List<Task>>
 
     @POST("api/tasks")
     fun addTask(@Body task: Task): Call<Any>
 
-    @DELETE("api/tasks/{listId}")
-    fun deleteTask(@Path("listId") listId: Int): Call<Any>
+    @PUT("api/tasks/{taskId}")
+    fun editTask(
+        @Path("taskId") taskId: Int,
+        @Query("title") title: String,
+        @Query("description") description: String
+    ): Call<Task>
+
+    @DELETE("api/tasks/{taskId}")
+    fun deleteTask(@Path("taskId") listId: Int): Call<Any>
 }

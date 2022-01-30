@@ -48,6 +48,13 @@ class DetailTaskFragment : Fragment() {
         binding.btnDelete.setOnClickListener {
             deleteTaskById(taskId)
         }
+        binding.btnSave.setOnClickListener{
+            val description = binding.etDetailTaskDescription.text.toString()
+            val title = binding.etDetailTaskTitle.text.toString()
+            val editedTask = Task(taskId,task.listIdFk,description,"Pendiente",title)
+            editTask(editedTask)
+
+        }
     }
 
     override fun onDestroyView() {
@@ -134,10 +141,31 @@ class DetailTaskFragment : Fragment() {
                 }
             }
             override fun onFailure(call: Call<Any>, t: Throwable) {
-                Toast.makeText(context, R.string.deleted_error_connection, Toast.LENGTH_SHORT)
+                Toast.makeText(context, R.string.connection_error, Toast.LENGTH_SHORT)
                     .show()
             }
 
+        })
+    }
+
+    private fun editTask(editedTask: Task){
+
+        val service = TaskApi.service.editTask(editedTask.taskId,editedTask.title,editedTask.description)
+        val call = service.enqueue(object : Callback<Task>{
+            override fun onResponse(call: Call<Task>, response: Response<Task>) {
+                if(response.isSuccessful){
+                    task = response.body()!!
+                    setTexts(task)
+                    changeToViewDetailMode()
+                }else{
+                    Toast.makeText(context, R.string.format_error, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            override fun onFailure(call: Call<Task>, t: Throwable) {
+                Toast.makeText(context, R.string.connection_error, Toast.LENGTH_SHORT)
+                .show()
+            }
         })
     }
 }

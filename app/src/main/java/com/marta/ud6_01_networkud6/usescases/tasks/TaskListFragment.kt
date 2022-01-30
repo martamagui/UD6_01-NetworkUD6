@@ -63,6 +63,9 @@ class TaskListFragment : Fragment() {
                 response: Response<List<TaskList>>
             ) {
                 if(response.isSuccessful){
+                    if (lista.size>0){
+                        lista.clear()
+                    }
                     response.body()?.let { lista.addAll(it) }
                     adapter.submitList(lista)
                     adapter.notifyDataSetChanged()
