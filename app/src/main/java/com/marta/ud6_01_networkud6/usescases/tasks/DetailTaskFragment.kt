@@ -1,23 +1,75 @@
 package com.marta.ud6_01_networkud6.usescases.tasks
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import com.marta.ud6_01_networkud6.R
+import com.marta.ud6_01_networkud6.databinding.FragmentDetailTaskBinding
+import com.marta.ud6_01_networkud6.databinding.FragmentTasksBinding
+import com.marta.ud6_01_networkud6.model.Task
+import com.marta.ud6_01_networkud6.provider.TaskApi
+import retrofit2.Callback
+import retrofit2.Call
+import retrofit2.Response
 
 
 class DetailTaskFragment : Fragment() {
-
-
-
+    private var _binding: FragmentDetailTaskBinding? = null
+    private val binding
+        get() = _binding!!
+    private val args: DetailTaskFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_task, container, false)
+        _binding = FragmentDetailTaskBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val task: Task = requestTaskById(args.taskId)
+        with(binding){
+            tvDetailTaskTitle.text = task.title
+            tvDetailDescription.text = task.description
+        }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    //Change to edit mode
+    private fun changeToEditMode(){
+    }
+    //Request
+    private fun requestTaskById(taskId: Int): Task{
+        val service = TaskApi.service.getTaskById(taskId)
+        var task = Task(9999,1,"No task found","Incomplete","No task found")
+        val call = service.enqueue(object : Callback<Task>{
+            override fun onResponse(call: Call<Task>, response: Response<Task>) {
+                if (response.isSuccessful) {
+                    task = response.body()!!
+                } else {
+                    Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Format faliure", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            override fun onFailure(call: Call<Task>, t: Throwable) {
+                Toast.makeText(
+                    context,
+                    "FALIURE(╯°□°）╯︵ ┻━┻ Connection faliure ",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e("faliure", "$t")
+            }
+        })
+        return task
+    }
+
 
 }

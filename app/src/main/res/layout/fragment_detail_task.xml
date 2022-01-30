@@ -8,7 +8,7 @@
     tools:context=".usescases.tasks.AddTaskFragment" >
 
     <TextView
-        android:id="@+id/tv_detail_task"
+        android:id="@+id/tv_detail_task_dont_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -19,18 +19,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_detail_task_title"
-        android:layout_width="0dp"
+        android:id="@+id/tv_detail_task_title_dont_edit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         android:text="@string/Title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_task" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_task_dont_edit" />
+
+    <TextView
+        android:id="@+id/tv_detail_task_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:text="@string/Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/filledTextField_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/filledTextField_detail" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField_detail"
@@ -42,7 +54,8 @@
         android:hint="@string/Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_task_title">
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_task_title_dont_edit"
+        tools:visibility="invisible">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_detail_task_title"
@@ -52,14 +65,26 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/tv_detail_description"
+        android:id="@+id/tv_detail_description_dont_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/Description"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="@+id/filledTextField_detail"
         app:layout_constraintTop_toBottomOf="@+id/filledTextField_detail" />
+
+    <TextView
+        android:id="@+id/tv_detail_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="@+id/filledTextField2_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/filledTextField2_detail" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField2_detail"
@@ -69,9 +94,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/Description"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_description">
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_description_dont_edit"
+        tools:visibility="invisible">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_detail_task_description"
@@ -89,25 +117,42 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="@+id/filledTextField2_detail"
         app:layout_constraintStart_toStartOf="@+id/filledTextField2_detail"
-        app:layout_constraintTop_toBottomOf="@+id/filledTextField2_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/filledTextField2_detail"
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_edit"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
         app:icon="@drawable/ic_baseline_edit_24"
-        app:layout_constraintBottom_toTopOf="@+id/tv_detail_task_title"
-        app:layout_constraintEnd_toEndOf="@+id/tv_detail_task_title" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_task_title_dont_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_detail_task_title_dont_edit"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btn_delete"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         app:icon="@drawable/ic_baseline_delete_24"
-        app:layout_constraintBottom_toTopOf="@+id/tv_detail_task_title"
-        app:layout_constraintEnd_toStartOf="@+id/btn_edit" />
+        app:layout_constraintBottom_toBottomOf="@+id/btn_edit"
+        app:layout_constraintEnd_toStartOf="@+id/btn_edit"
+        app:layout_constraintTop_toTopOf="@+id/btn_edit"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/status"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="@+id/tv_detail_task_dont_edit"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_task_dont_edit"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_task_dont_edit" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

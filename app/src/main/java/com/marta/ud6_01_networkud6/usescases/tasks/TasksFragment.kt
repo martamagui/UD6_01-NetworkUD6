@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.marta.ud6_01_networkud6.databinding.FragmentTasksBinding
 import com.marta.ud6_01_networkud6.model.Task
 import com.marta.ud6_01_networkud6.provider.TaskApi
-import com.marta.ud6_01_networkud6.provider.TaskApiService
 import com.marta.ud6_01_networkud6.usescases.common.TaskAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,10 +22,12 @@ class TasksFragment : Fragment() {
     private var _binding: FragmentTasksBinding? = null
     private val binding
         get() = _binding!!
-    private val adapter = TaskAdapter()
     private val args: TasksFragmentArgs by navArgs()
     private var taskList: MutableList<Task> = mutableListOf()
     private var listId: Int = 0
+    private val adapter = TaskAdapter {
+        toDetailView(it.taskId)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +41,7 @@ class TasksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvTasks.adapter = adapter
         binding.rvTasks.layoutManager = LinearLayoutManager(context)
-        listId= args.listIdFk
+        listId = args.listIdFk
         requestTask(listId)
         binding.fabAddTask.setOnClickListener {
             viewChangeAddTaskView()
@@ -51,8 +52,15 @@ class TasksFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    private fun viewChangeAddTaskView(){
-        val action =  TasksFragmentDirections.actionTasksFragmentToAddTaskFragment(listId)
+
+    //ViewChange
+    private fun toDetailView(taskId: Int) {
+        val action = TasksFragmentDirections.actionTasksFragmentToDetailTaskFragment(taskId)
+        findNavController().navigate(action)
+    }
+
+    private fun viewChangeAddTaskView() {
+        val action = TasksFragmentDirections.actionTasksFragmentToAddTaskFragment(listId)
         findNavController().navigate(action)
     }
 

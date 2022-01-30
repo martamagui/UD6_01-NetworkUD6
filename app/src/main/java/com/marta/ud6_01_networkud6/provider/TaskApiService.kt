@@ -21,7 +21,7 @@ interface TaskApiService {
     fun getTasks(): Call<List<Task>>
 
     @GET("api/tasks/id/{taskId}")
-    fun getTaskById(): Call<Task>
+    fun getTaskById(@Path("taskId")taskId: Int): Call<Task>
 
     @GET("api/tasks/{listId}")
     fun getTaskByListId(@Path("listId") listId: Int): Call<List<Task>>
