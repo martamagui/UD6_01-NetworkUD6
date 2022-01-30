@@ -23,6 +23,7 @@ class DetailTaskFragment : Fragment() {
     private val binding
         get() = _binding!!
     private val args: DetailTaskFragmentArgs by navArgs()
+    private lateinit var task: Task
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,11 +34,7 @@ class DetailTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val task: Task = requestTaskById(args.taskId)
-        with(binding){
-            tvDetailTaskTitle.text = task.title
-            tvDetailDescription.text = task.description
-        }
+        requestTaskById(args.taskId)
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -46,14 +43,24 @@ class DetailTaskFragment : Fragment() {
     //Change to edit mode
     private fun changeToEditMode(){
     }
+    private fun setTexts(task:Task){
+        with(binding){
+            etDetailTaskTitleContainer.visibility= View.INVISIBLE
+            etDetailTaskDescriptionContainer.visibility = View.INVISIBLE
+            tvDetailTaskTitle.text = task.title
+            tvDetailDescription.text = task.description
+            tvStatus.text = task.state
+
+        }
+    }
     //Request
-    private fun requestTaskById(taskId: Int): Task{
+    private fun requestTaskById(taskId: Int) {
         val service = TaskApi.service.getTaskById(taskId)
-        var task = Task(9999,1,"No task found","Incomplete","No task found")
         val call = service.enqueue(object : Callback<Task>{
             override fun onResponse(call: Call<Task>, response: Response<Task>) {
                 if (response.isSuccessful) {
                     task = response.body()!!
+                    setTexts(task)
                 } else {
                     Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Format faliure", Toast.LENGTH_SHORT)
                         .show()
@@ -68,8 +75,5 @@ class DetailTaskFragment : Fragment() {
                 Log.e("faliure", "$t")
             }
         })
-        return task
     }
-
-
 }
