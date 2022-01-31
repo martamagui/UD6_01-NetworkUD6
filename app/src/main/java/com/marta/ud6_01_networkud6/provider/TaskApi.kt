@@ -13,7 +13,8 @@ object TaskApi {
         .addInterceptor(loggingInterceptor)
         .build()
     private val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.1.132:8080/")
+    \\ TODO pon tu ip
+        .baseUrl("http://111.111.1.111:8080/")
         .client(client)//capta la petición
         .addConverterFactory(GsonConverterFactory.create())
         .build()
