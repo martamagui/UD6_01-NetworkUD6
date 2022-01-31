@@ -19,16 +19,15 @@ import retrofit2.Response
 
 
 class TaskListFragment : Fragment() {
-
     private var _binding: FragmentTaskListBinding? = null
     private val binding
         get() = _binding!!
     private val lista: MutableList<TaskList> = mutableListOf()
-    private val adapter = TaskListAdapter{
+    private val adapter = TaskListAdapter({deleteList(it.listId)}){
         viewChange(it.listId, it.name)
     }
-    //TODO crear una función que compruebe los ids de las listas antes de guardarlas
 
+    //TODO crear una función que compruebe los ids de las listas antes de guardarlas
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -107,6 +106,21 @@ class TaskListFragment : Fragment() {
             override fun onFailure(call: Call<Any>, t: Throwable) {
                 Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Connection faliure ", Toast.LENGTH_SHORT).show()
                 Log.e("faliure","$t")
+            }
+        })
+    }
+    private fun deleteList(listId: Int){
+        val service = TaskApi.service.deleteList(listId)
+        val call = service.enqueue(object : Callback<Int> {
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if(!response.isSuccessful){
+                    Log.d("Item","(╯°□°）╯︵ ┻━┻ Formato incorrecto")
+                }else{
+                    requestTaskList()
+                }
+            }
+            override fun onFailure(call: Call<Int>, t: Throwable) {
+                Log.d("Item","(╯°□°）╯︵ ┻━┻ Formato incorrecto $t")
             }
         })
     }

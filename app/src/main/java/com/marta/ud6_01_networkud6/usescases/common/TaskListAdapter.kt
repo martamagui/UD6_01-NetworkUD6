@@ -11,8 +11,7 @@ import com.marta.ud6_01_networkud6.model.TaskList
 import com.marta.ud6_01_networkud6.usescases.common.TaskListAdapter.ViewHolder
 
 
-
-class TaskListAdapter(private val onListTitleClicked: (TaskList) -> Unit) :
+class TaskListAdapter(private val onListBinClicked: (TaskList) -> Unit, private val onListTitleClicked: (TaskList) -> Unit) :
     ListAdapter<TaskList, ViewHolder>(TaskListItemCallBack()) {
 
 
@@ -29,22 +28,21 @@ class TaskListAdapter(private val onListTitleClicked: (TaskList) -> Unit) :
             tvListTitle.setOnClickListener{
                 onListTitleClicked(taskList)
             }
+            ivBinListitem.setOnClickListener {
+                onListBinClicked(taskList)
+            }
         }
     }
 
     inner class ViewHolder(val binding: ItemTasklistBinding) :
         RecyclerView.ViewHolder(binding.root)
-
-
 }
 
 class TaskListItemCallBack : DiffUtil.ItemCallback<TaskList>() {
     override fun areItemsTheSame(oldItem: TaskList, newItem: TaskList): Boolean {
         return oldItem.listId == newItem.listId
     }
-
     override fun areContentsTheSame(oldItem: TaskList, newItem: TaskList): Boolean {
         return oldItem.listId == newItem.listId
     }
-
 }

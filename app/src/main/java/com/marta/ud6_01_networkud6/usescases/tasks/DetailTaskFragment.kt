@@ -41,8 +41,10 @@ class DetailTaskFragment : Fragment() {
         binding.btnEdit.setOnClickListener {
             if (editMode == true) {
                 changeToViewDetailMode()
+                editMode = false
             } else {
                 changeToEditMode()
+                editMode = true
             }
         }
         binding.btnDelete.setOnClickListener {

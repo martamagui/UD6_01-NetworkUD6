@@ -12,9 +12,9 @@ object TaskApi {
     private val client: OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()
+    // TODO pon tu ip
     private val retrofit = Retrofit.Builder()
-    \\ TODO pon tu ip
-        .baseUrl("http://111.111.1.111:8080/")
+        .baseUrl("http://999.999.9.999:8080/")
         .client(client)//capta la petición
         .addConverterFactory(GsonConverterFactory.create())
         .build()
