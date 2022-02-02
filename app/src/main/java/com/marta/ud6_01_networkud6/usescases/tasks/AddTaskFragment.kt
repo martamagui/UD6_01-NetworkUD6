@@ -70,6 +70,8 @@ class AddTaskFragment : Fragment() {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Guardado", Toast.LENGTH_SHORT)
                         .show()
+
+
                     clearTxtFiles()
                 } else {
                     Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Format faliure", Toast.LENGTH_SHORT)

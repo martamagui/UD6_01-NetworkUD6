@@ -59,6 +59,9 @@ class TaskListFragment : Fragment() {
             binding.tvNoList.visibility = View.VISIBLE
         }
     }
+    private fun clearText(){
+        binding.tfNewList.setText("")
+    }
     //Req data
     private fun requestTaskList(){
         val service = TaskApi.service.getTaskLists()
@@ -98,6 +101,7 @@ class TaskListFragment : Fragment() {
                     adapter.submitList(lista)
                     adapter.notifyDataSetChanged()
                     showHideMessage()
+                    clearText()
                     Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(context, "(╯°□°）╯︵ ┻━┻ Format faliure", Toast.LENGTH_SHORT).show()
